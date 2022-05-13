@@ -14,6 +14,13 @@ The `Astro` global is available in all contexts in `.astro` files. It has the fo
 
 `Astro.glob()` is a way to load many local files into your static site setup.
 
+> NOTE: `Astro.glob()` is a wrapper of Vite's [`import.meta.glob()`](https://vitejs.dev/guide/features.html#glob-import), so it cannot accept variables as they are not statically analyzable. A workaround is to use a static glob pattern and then filter the results. For example:
+> ```js
+> const pathToMyPost = 'src/pages/post/my-post.md'
+> const allPosts = await Astro.glob('../pages/post/*.md');
+> const myPost = posts.find(post => post.file.endsWith(pathToMyPost)
+> ```
+
 ```astro
 ---
 // ./src/components/my-component.astro
